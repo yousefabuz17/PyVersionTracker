@@ -255,7 +255,7 @@ class PyVersionTracker:
         all_versions: Generator[str, None, None] = cls._unpack_versions(cls()._get_all_versions())
         if org_version:=(cls._validate_version(__version)):
             ver_compiled = cls._compiler(all_versions,
-                                        __version,
+                                        org_version,
                                         escape_k=False,
                                         search=False)
             if ver_compiled:
@@ -363,10 +363,10 @@ class PyVersionTracker:
         if not __version:
             __version: str = cls().min_stable_version.version
         version: str = cls._validate_version(__version)
-        target_version: Tuple[int, ...] = cls.tuple2str(version)
+        target_version: Tuple[int, ...] = cls.str2tuple(version)
         _operator = operator.ge if above else operator.le
         return (ver for ver in cls().all_versions
-                if _operator(cls.tuple2str(ver.version), target_version))
+                if _operator(cls.str2tuple(ver.version), target_version))
     
     @classmethod
     def _unsupported_v(cls, __all=False) -> Union[Iterator[NamedTuple],
@@ -508,16 +508,3 @@ Author:
 Version:
     - 0.0.1
 """
-
-
-# print(PyVersionTracker().min_stable_version)
-# print(PyVersionTracker().tuple2str('2.0.8'))
-print(PyVersionTracker().version_checker())
-# print(list(PyVersionTracker.version_range('3.9')))
-# print(pypistats.overall('cipher-engine'))
-# print(pypistats.pypi_stats_api('packages/cipher-engine/recent', verbose=True))
-# print(PyVersionTracker.package_tracker(package='cipher-engine', verbose=True))
-# print(sorted(PyVersionTracker().all_versions, key=lambda x: PyVersionTracker.str2tuple(x.version)))
-# print(PyVersionTracker().is_version('2.0.11'))
-# print(PyVersionTracker().is_deprecated('3.8.6'))
-# print(list(PyVersionTracker().active_versions))

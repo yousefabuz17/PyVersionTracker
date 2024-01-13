@@ -17,8 +17,8 @@ setup(
     package_dir={'': 'src'},
     platforms=["Windows", "Linux", "MacOS"],
     license="Apache Software License",
-    install_requires=['cryptography~=41.0.4', 'dataclasses_json~=0.6.3',
-                    'numpy~=1.26.3', 'psutil~=5.9.7', 'pytest~=7.4.3'],
+    install_requires=['aiohttp~=3.9.0b0', 'beautifulsoup4~=4.12.2',
+                    'setuptools~=68.2.2', 'pypistats~=1.5.0'],
     classifiers=[
     "Programming Language :: Python :: 3",
     "License :: OSI Approved :: Apache Software License", 
